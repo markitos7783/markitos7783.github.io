@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-05-2024 a las 02:59:47
+-- Tiempo de generación: 29-05-2024 a las 02:58:39
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -25,25 +25,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `artistas`
+-- Estructura de tabla para la tabla `artisacanciones`
 --
 
-CREATE TABLE `artistas` (
+CREATE TABLE `artisacanciones` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `descripcion` varchar(150) NOT NULL
+  `artista_id` int(11) NOT NULL,
+  `canciones_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `artistas_canciones`
+-- Estructura de tabla para la tabla `artistas`
 --
 
-CREATE TABLE `artistas_canciones` (
+CREATE TABLE `artistas` (
   `id` int(11) NOT NULL,
-  `artistas_id` int(11) NOT NULL,
-  `cancion_id` int(11) NOT NULL
+  `nombre` varchar(100) NOT NULL,
+  `descripcion` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -54,24 +54,24 @@ CREATE TABLE `artistas_canciones` (
 
 CREATE TABLE `canciones` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(150) NOT NULL,
+  `Nombre` varchar(200) NOT NULL,
   `genero_id` int(11) NOT NULL,
   `duracion` time NOT NULL,
   `fecha` date NOT NULL,
   `activo` tinyint(1) NOT NULL,
-  `foto` varchar(150) NOT NULL
+  `foto` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fovorito`
+-- Estructura de tabla para la tabla `favoritos`
 --
 
-CREATE TABLE `fovorito` (
+CREATE TABLE `favoritos` (
   `id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
-  `cancion_id` int(11) NOT NULL
+  `canciones_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -82,18 +82,18 @@ CREATE TABLE `fovorito` (
 
 CREATE TABLE `generos` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(150) NOT NULL
+  `Nombre` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `membresia`
+-- Estructura de tabla para la tabla `membresias`
 --
 
-CREATE TABLE `membresia` (
+CREATE TABLE `membresias` (
   `id` int(11) NOT NULL,
-  `descripcion` varchar(150) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
   `precio` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -105,10 +105,10 @@ CREATE TABLE `membresia` (
 
 CREATE TABLE `playlist` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(150) NOT NULL,
+  `nombre` varchar(200) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `duracion` time NOT NULL,
-  `total_canciones` int(11) NOT NULL,
+  `totalcanciones` int(11) NOT NULL,
   `descripcion` varchar(200) NOT NULL,
   `publico` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -116,27 +116,27 @@ CREATE TABLE `playlist` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `playlist_canciones`
+-- Estructura de tabla para la tabla `playlistcanciones`
 --
 
-CREATE TABLE `playlist_canciones` (
+CREATE TABLE `playlistcanciones` (
   `id` int(11) NOT NULL,
   `playlist_id` int(11) NOT NULL,
-  `cancion_id` int(11) NOT NULL,
+  `canciones_id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `correo` varchar(150) NOT NULL,
-  `menbrecia_id` int(11) NOT NULL
+  `Nombre` varchar(100) NOT NULL,
+  `correo` varchar(300) NOT NULL,
+  `membresia_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -144,18 +144,18 @@ CREATE TABLE `usuario` (
 --
 
 --
+-- Indices de la tabla `artisacanciones`
+--
+ALTER TABLE `artisacanciones`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `artista_id` (`artista_id`),
+  ADD KEY `canciones_id` (`canciones_id`);
+
+--
 -- Indices de la tabla `artistas`
 --
 ALTER TABLE `artistas`
   ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `artistas_canciones`
---
-ALTER TABLE `artistas_canciones`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `artistas_id` (`artistas_id`),
-  ADD KEY `cancion_id` (`cancion_id`);
 
 --
 -- Indices de la tabla `canciones`
@@ -165,11 +165,12 @@ ALTER TABLE `canciones`
   ADD KEY `genero_id` (`genero_id`);
 
 --
--- Indices de la tabla `fovorito`
+-- Indices de la tabla `favoritos`
 --
-ALTER TABLE `fovorito`
+ALTER TABLE `favoritos`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `usuario_id` (`usuario_id`),
-  ADD KEY `cancion_id` (`cancion_id`);
+  ADD KEY `canciones_id` (`canciones_id`);
 
 --
 -- Indices de la tabla `generos`
@@ -178,9 +179,9 @@ ALTER TABLE `generos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `membresia`
+-- Indices de la tabla `membresias`
 --
-ALTER TABLE `membresia`
+ALTER TABLE `membresias`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -191,35 +192,35 @@ ALTER TABLE `playlist`
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
--- Indices de la tabla `playlist_canciones`
+-- Indices de la tabla `playlistcanciones`
 --
-ALTER TABLE `playlist_canciones`
+ALTER TABLE `playlistcanciones`
   ADD PRIMARY KEY (`id`),
   ADD KEY `playlist_id` (`playlist_id`),
-  ADD KEY `cancion_id` (`cancion_id`),
+  ADD KEY `canciones_id` (`canciones_id`),
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
--- Indices de la tabla `usuario`
+-- Indices de la tabla `usuarios`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `menbrecia_id` (`menbrecia_id`);
+  ADD KEY `membresia_id` (`membresia_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `artistas`
+-- AUTO_INCREMENT de la tabla `artisacanciones`
 --
-ALTER TABLE `artistas`
+ALTER TABLE `artisacanciones`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `artistas_canciones`
+-- AUTO_INCREMENT de la tabla `artistas`
 --
-ALTER TABLE `artistas_canciones`
+ALTER TABLE `artistas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -229,15 +230,21 @@ ALTER TABLE `canciones`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `favoritos`
+--
+ALTER TABLE `favoritos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `generos`
 --
 ALTER TABLE `generos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `membresia`
+-- AUTO_INCREMENT de la tabla `membresias`
 --
-ALTER TABLE `membresia`
+ALTER TABLE `membresias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -247,15 +254,15 @@ ALTER TABLE `playlist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `playlist_canciones`
+-- AUTO_INCREMENT de la tabla `playlistcanciones`
 --
-ALTER TABLE `playlist_canciones`
+ALTER TABLE `playlistcanciones`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -263,11 +270,11 @@ ALTER TABLE `usuario`
 --
 
 --
--- Filtros para la tabla `artistas_canciones`
+-- Filtros para la tabla `artisacanciones`
 --
-ALTER TABLE `artistas_canciones`
-  ADD CONSTRAINT `artistas_canciones_ibfk_1` FOREIGN KEY (`artistas_id`) REFERENCES `artistas` (`id`),
-  ADD CONSTRAINT `artistas_canciones_ibfk_2` FOREIGN KEY (`cancion_id`) REFERENCES `canciones` (`id`);
+ALTER TABLE `artisacanciones`
+  ADD CONSTRAINT `artisacanciones_ibfk_1` FOREIGN KEY (`artista_id`) REFERENCES `artistas` (`id`),
+  ADD CONSTRAINT `artisacanciones_ibfk_2` FOREIGN KEY (`canciones_id`) REFERENCES `canciones` (`id`);
 
 --
 -- Filtros para la tabla `canciones`
@@ -276,31 +283,31 @@ ALTER TABLE `canciones`
   ADD CONSTRAINT `canciones_ibfk_1` FOREIGN KEY (`genero_id`) REFERENCES `generos` (`id`);
 
 --
--- Filtros para la tabla `fovorito`
+-- Filtros para la tabla `favoritos`
 --
-ALTER TABLE `fovorito`
-  ADD CONSTRAINT `fovorito_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
-  ADD CONSTRAINT `fovorito_ibfk_2` FOREIGN KEY (`cancion_id`) REFERENCES `canciones` (`id`);
+ALTER TABLE `favoritos`
+  ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`canciones_id`) REFERENCES `canciones` (`id`),
+  ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
 -- Filtros para la tabla `playlist`
 --
 ALTER TABLE `playlist`
-  ADD CONSTRAINT `playlist_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`);
+  ADD CONSTRAINT `playlist_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
--- Filtros para la tabla `playlist_canciones`
+-- Filtros para la tabla `playlistcanciones`
 --
-ALTER TABLE `playlist_canciones`
-  ADD CONSTRAINT `playlist_canciones_ibfk_1` FOREIGN KEY (`playlist_id`) REFERENCES `playlist` (`id`),
-  ADD CONSTRAINT `playlist_canciones_ibfk_2` FOREIGN KEY (`cancion_id`) REFERENCES `canciones` (`id`),
-  ADD CONSTRAINT `playlist_canciones_ibfk_3` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`);
+ALTER TABLE `playlistcanciones`
+  ADD CONSTRAINT `playlistcanciones_ibfk_1` FOREIGN KEY (`canciones_id`) REFERENCES `canciones` (`id`),
+  ADD CONSTRAINT `playlistcanciones_ibfk_2` FOREIGN KEY (`playlist_id`) REFERENCES `playlist` (`id`),
+  ADD CONSTRAINT `playlistcanciones_ibfk_3` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
--- Filtros para la tabla `usuario`
+-- Filtros para la tabla `usuarios`
 --
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`menbrecia_id`) REFERENCES `membresia` (`id`);
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`membresia_id`) REFERENCES `membresias` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
