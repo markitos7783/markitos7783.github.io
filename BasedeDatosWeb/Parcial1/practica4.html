@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen en línea</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <form action="practica4.php" method="POST">
+            <div class="row">
+                <h1>Exámen de musical</h1><hr>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                        1. ¿Que instrumentos usan cuerdas para su uso?
+                        </div>
+                        <div class="card-body">
+                            <p><input type="radio" name="pregunta1" value="guitarra" required> guitarra </p>
+                            <p><input type="radio" name="pregunta1" value="trompeta" required> trompeta </p>
+                            <p><input type="radio" name="pregunta1" value="tuba" required> tuba </p>
+                        </div>
+                    </div>
+
+                    <div class="card p-4 mb-4">
+                        <p>
+                            2. <input type="text" name="pregunta2" required> Instrumento musical de cuerda compuesto por una caja de resonancia en forma de ocho, un mástil largo con trastes, y cuerdas, generalmente seis, que se hacen sonar con los dedos.
+
+                        </p>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                        3. ¿Son instrumentos que cuentas con caja de resonancia? (Selecciona 2)
+                        </div>
+                        <div class="card-body">
+                            <p><input type="checkbox" name="pregunta3[]" value="guitarra" > guitarra </p>
+                            <p><input type="checkbox" name="pregunta3[]" value="bajo_acustico" > bajo acustico </p>
+                            <p><input type="checkbox" name="pregunta3[]" value="guitarra_electrica" > guitarra electrica </p>
+                        </div>
+                    </div>
+
+                    <div class="card p-4 mb-4">
+                        <p>
+                            4. <input type="text" name="pregunta4" required> Instrumento musical, derivado de la guitarra, en que la vibración de las cuerdas se recoge y amplifica mediante un equipo electrónico
+
+                        </p>
+                    </div>
+
+                    <div class="card mb-4"></div>
+                        <div class="card-header">
+                        5. ¿Que nota musical sigue de DO?
+                        </div>
+                        <div class="card-body">
+                            <p><input type="radio" name="pregunta5" value="RE" required> RE </p>
+                            <p><input type="radio" name="pregunta5" value="LA" required> LA </p>
+                            <p><input type="radio" name="pregunta5" value="FA" required> FA </p>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4"></div>
+                        <div class="card-header">
+                        6. ¿La cancion culiacan vs mazatlan?
+                        </div>
+                        <div class="card-body">
+                            <p><input type="radio" name="pregunta6" value="corrido" required> corrido </p>
+                            <p><input type="radio" name="pregunta6" value="banda" required> banda </p>
+                            <p><input type="radio" name="pregunta6" value="rock" required> rock </p>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                        7. ¿A quien se parece papik?
+                        </div>
+                        <div class="card-body">
+                            <p><input type="radio" name="pregunta7" value="komander" required> komander </p>
+                            <p><input type="radio" name="pregunta7" value="ibarra" required> ibarra </p>
+                            <p><input type="radio" name="pregunta7" value="mama" required> mama </p>
+                        </div>
+                    </div>
+                </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                        8. ¿Que instrumentos funcionan atravez del aire? (Selecciona 2)
+                        </div>
+                        <div class="card-body">
+                            <p><input type="checkbox" name="pregunta8[] value= "guitarra" > guitarra </p>
+                            <p><input type="checkbox" name="pregunta8[]" value="trompeta" > trompeta </p>
+                            <p><input type="checkbox" name="pregunta8[]" value="saxofon" > saxofon</p>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4"></div>
+                        <div class="card-header">
+                        9. ¿cual es el instrumento mas usado en mexico?
+                        </div>
+                        <div class="card-body">
+                            <p><input type="radio" name="pregunta9" value="guitarra" required> guitarra </p>
+                            <p><input type="radio" name="pregunta9" value="trompeta" required> trompeta </p>
+                            <p><input type="radio" name="pregunta9" value="piano" required> piano </p>
+                        </div>
+                    </div>
+
+                    <div class="card p-4 mb-4"></div>
+                        <p>
+                            10. <input type="text" name="pregunta10" required> son conjuntos de dos o más notas tocadas al mismo tiempo.
+                        </p>
+                    </div>
+
+            </div>
+            <br><input type="submit" class="btn btn-primary" value="Terminar examen">
+        </form>
+    </div>
+</body>
+</html>
